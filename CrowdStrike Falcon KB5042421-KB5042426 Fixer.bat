@@ -1,8 +1,8 @@
 @echo off
-setlocal
 title CrowdStrike Falcon KB5042421/KB5042426 Fixer
+setlocal
 echo Program Name: CrowdStrike Falcon KB5042421/KB5042426 Fixer
-echo Version: 2.0.26
+echo Version: 2.0.27
 echo License: GNU General Public License v3.0
 echo Developer: @YonatanReuvenIsraeli
 echo GitHub: https://github.com/YonatanReuvenIsraeli
