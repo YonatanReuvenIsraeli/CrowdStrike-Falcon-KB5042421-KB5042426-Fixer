@@ -2,7 +2,7 @@
 title CrowdStrike Falcon KB5042421/KB5042426 Fixer
 setlocal
 echo Program Name: CrowdStrike Falcon KB5042421/KB5042426 Fixer
-echo Version: 2.0.27
+echo Version: 2.0.28
 echo License: GNU General Public License v3.0
 echo Developer: @YonatanReuvenIsraeli
 echo GitHub: https://github.com/YonatanReuvenIsraeli
@@ -209,7 +209,7 @@ pause > nul 2>&1
 goto "Close"
 
 :"BugCheck"
-if exist "%DriveLetter%\Windows\System32\drivers\CrowdStrike\C-00000291*.sys" goto "CrowdStrike"
+if exist "%DriveLetterWindows%\Windows\System32\drivers\CrowdStrike\C-00000291*.sys" goto "CrowdStrike"
 echo CrowdStrike Falcon installed but no problems found! Press any key to close this batch file.
 pause > nul 2>&1
 goto "Close"
