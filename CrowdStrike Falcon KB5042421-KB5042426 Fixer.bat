@@ -2,7 +2,7 @@
 title CrowdStrike Falcon KB5042421/KB5042426 Fixer
 setlocal
 echo Program Name: CrowdStrike Falcon KB5042421/KB5042426 Fixer
-echo Version: 2.0.29
+echo Version: 3.0.0
 echo License: GNU General Public License v3.0
 echo Developer: @YonatanReuvenIsraeli
 echo GitHub: https://github.com/YonatanReuvenIsraeli
@@ -82,47 +82,73 @@ goto "SureWindowsAsk2"
 
 :"WindowsDriveLetter"
 echo.
-set WindowsDriveLetter=
-set /p WindowsDriveLetter="Enter an unused drive letter. (A:-Z:) "
-if exist "%WindowsDriveLetter%" goto "WindowsDriveLetterExist"
-if /i "%WindowsDriveLetter%"=="A:" goto "AssignDriveLetterWindows"
-if /i "%WindowsDriveLetter%"=="B:" goto "AssignDriveLetterWindows"
-if /i "%WindowsDriveLetter%"=="C:" goto "AssignDriveLetterWindows"
-if /i "%WindowsDriveLetter%"=="D:" goto "AssignDriveLetterWindows"
-if /i "%WindowsDriveLetter%"=="E:" goto "AssignDriveLetterWindows"
-if /i "%WindowsDriveLetter%"=="F:" goto "AssignDriveLetterWindows"
-if /i "%WindowsDriveLetter%"=="G:" goto "AssignDriveLetterWindows"
-if /i "%WindowsDriveLetter%"=="H:" goto "AssignDriveLetterWindows"
-if /i "%WindowsDriveLetter%"=="I:" goto "AssignDriveLetterWindows"
-if /i "%WindowsDriveLetter%"=="J:" goto "AssignDriveLetterWindows"
-if /i "%WindowsDriveLetter%"=="K:" goto "AssignDriveLetterWindows"
-if /i "%WindowsDriveLetter%"=="L:" goto "AssignDriveLetterWindows"
-if /i "%WindowsDriveLetter%"=="M:" goto "AssignDriveLetterWindows"
-if /i "%WindowsDriveLetter%"=="N:" goto "AssignDriveLetterWindows"
-if /i "%WindowsDriveLetter%"=="O:" goto "AssignDriveLetterWindows"
-if /i "%WindowsDriveLetter%"=="P:" goto "AssignDriveLetterWindows"
-if /i "%WindowsDriveLetter%"=="Q:" goto "AssignDriveLetterWindows"
-if /i "%WindowsDriveLetter%"=="R:" goto "AssignDriveLetterWindows"
-if /i "%WindowsDriveLetter%"=="S:" goto "AssignDriveLetterWindows"
-if /i "%WindowsDriveLetter%"=="T:" goto "AssignDriveLetterWindows"
-if /i "%WindowsDriveLetter%"=="U:" goto "AssignDriveLetterWindows"
-if /i "%WindowsDriveLetter%"=="V:" goto "AssignDriveLetterWindows"
-if /i "%WindowsDriveLetter%"=="W:" goto "AssignDriveLetterWindows"
-if /i "%WindowsDriveLetter%"=="X:" goto "AssignDriveLetterWindows"
-if /i "%WindowsDriveLetter%"=="Y:" goto "AssignDriveLetterWindows"
-if /i "%WindowsDriveLetter%"=="Z:" goto "AssignDriveLetterWindows"
-echo Invalid syntax!
+echo Finding an available drive letter.
+if not exist "A:" set WindowsDriveLetter=A:
+if not exist "A:" goto "AvailableDriveLetterFound"
+if not exist "B:" set WindowsDriveLetter=B:
+if not exist "B:" goto "AvailableDriveLetterFound"
+if not exist "C:" set WindowsDriveLetter=C:
+if not exist "C:" goto "AvailableDriveLetterFound"
+if not exist "D:" set WindowsDriveLetter=D:
+if not exist "D:" goto "AvailableDriveLetterFound"
+if not exist "E:" set WindowsDriveLetter=E:
+if not exist "E:" goto "AvailableDriveLetterFound"
+if not exist "F:" set WindowsDriveLetter=F:
+if not exist "F:" goto "AvailableDriveLetterFound"
+if not exist "G:" set WindowsDriveLetter=G:
+if not exist "G:" goto "AvailableDriveLetterFound"
+if not exist "H:" set WindowsDriveLetter=H:
+if not exist "H:" goto "AvailableDriveLetterFound"
+if not exist "I:" set WindowsDriveLetter=I:
+if not exist "I:" goto "AvailableDriveLetterFound"
+if not exist "J:" set WindowsDriveLetter=J:
+if not exist "J:" goto "AvailableDriveLetterFound"
+if not exist "K:" set WindowsDriveLetter=K:
+if not exist "K:" goto "AvailableDriveLetterFound"
+if not exist "L:" set WindowsDriveLetter=L:
+if not exist "L:" goto "AvailableDriveLetterFound"
+if not exist "M:" set WindowsDriveLetter=M:
+if not exist "M:" goto "AvailableDriveLetterFound"
+if not exist "N:" set WindowsDriveLetter=N:
+if not exist "N:" goto "AvailableDriveLetterFound"
+if not exist "O:" set WindowsDriveLetter=O:
+if not exist "O:" goto "AvailableDriveLetterFound"
+if not exist "P:" set WindowsDriveLetter=P:
+if not exist "P:" goto "AvailableDriveLetterFound"
+if not exist "Q:" set WindowsDriveLetter=Q:
+if not exist "Q:" goto "AvailableDriveLetterFound"
+if not exist "R:" set WindowsDriveLetter=R:
+if not exist "R:" goto "AvailableDriveLetterFound"
+if not exist "S:" set WindowsDriveLetter=S:
+if not exist "S:" goto "AvailableDriveLetterFound"
+if not exist "T:" set WindowsDriveLetter=T:
+if not exist "T:" goto "AvailableDriveLetterFound"
+if not exist "U:" set WindowsDriveLetter=U:
+if not exist "U:" goto "AvailableDriveLetterFound"
+if not exist "V:" set WindowsDriveLetter=V:
+if not exist "V:" goto "AvailableDriveLetterFound"
+if not exist "W:" set WindowsDriveLetter=W:
+if not exist "W:" goto "AvailableDriveLetterFound"
+if not exist "X:" set WindowsDriveLetter=X:
+if not exist "X:" goto "AvailableDriveLetterFound"
+if not exist "Y:" set WindowsDriveLetter=Y:
+if not exist "Y:" goto "AvailableDriveLetterFound"
+if not exist "Z:" set WindowsDriveLetter=Z:
+if not exist "Z:" goto "AvailableDriveLetterFound"
+echo No drive letters available! Please unmount 1 drive and then press any key to try again.
+pause > nul 2>&1
 goto "WindowsDriveLetter"
 
-:"WindowsDriveLetterExist"
-echo "%WindowsDriveLetter%" exists! Please try again.
-goto "WindowsDriveLetter"
+:"AvailableDriveLetterFound"
+echo Available drive letter found.
+goto "AssignDriveLetterWindows"
 
 :"AssignDriveLetterWindows"
 if exist "diskpart.txt" goto "DiskPartExistAssignDriveLetterWindows"
 echo.
 echo Assigning Windows volume %WindowsVolume% drive letter "%WindowsDriveLetter%".
-(echo sel vol %WindowsVolume%) > "diskpart.txt"
+(echo automount scrub) >
+(echo sel vol %WindowsVolume%) >> "diskpart.txt"
 (echo assign letter=%WindowsDriveLetter%) >> "diskpart.txt"
 (echo exit) >> "diskpart.txt"
 "%windir%\System32\diskpart.exe" /s "diskpart.txt" > nul 2>&1
