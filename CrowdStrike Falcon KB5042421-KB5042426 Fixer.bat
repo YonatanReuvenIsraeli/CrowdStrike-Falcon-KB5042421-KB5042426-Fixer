@@ -2,7 +2,7 @@
 title CrowdStrike Falcon KB5042421/KB5042426 Fixer
 setlocal
 echo Program Name: CrowdStrike Falcon KB5042421/KB5042426 Fixer
-echo Version: 3.0.0
+echo Version: 3.0.1
 echo License: GNU General Public License v3.0
 echo Developer: @YonatanReuvenIsraeli
 echo GitHub: https://github.com/YonatanReuvenIsraeli
@@ -135,7 +135,7 @@ if not exist "Y:" set WindowsDriveLetter=Y:
 if not exist "Y:" goto "AvailableDriveLetterFound"
 if not exist "Z:" set WindowsDriveLetter=Z:
 if not exist "Z:" goto "AvailableDriveLetterFound"
-echo No drive letters available! Please unmount 1 drive and then press any key to try again.
+echo No drive letter is available! Please unmount 1 drive and then press any key to try again.
 pause > nul 2>&1
 goto "WindowsDriveLetter"
 
