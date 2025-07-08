@@ -2,7 +2,7 @@
 title CrowdStrike Falcon KB5042421/KB5042426 Fixer
 setlocal
 echo Program Name: CrowdStrike Falcon KB5042421/KB5042426 Fixer
-echo Version: 3.0.1
+echo Version: 3.0.2
 echo License: GNU General Public License v3.0
 echo Developer: @YonatanReuvenIsraeli
 echo GitHub: https://github.com/YonatanReuvenIsraeli
@@ -155,6 +155,7 @@ echo Assigning Windows volume %WindowsVolume% drive letter "%WindowsDriveLetter%
 if not "%errorlevel%"=="0" goto "AssignDriveLetterWindowsError"
 del "diskpart.txt" /f /q > nul 2>&1
 echo Assigned Windows volume %WindowsVolume% drive letter "%WindowsDriveLetter%".
+if not exist "%WindowsDriveLetter%\Windows" goto "NotWindowsAssign"
 set DriveLetterWindows=%WindowsDriveLetter%
 goto "Start"
 
@@ -170,6 +171,10 @@ del "diskpart.txt" /f /q > nul 2>&1
 echo There has been an error! Press any key to try again.
 pause > nul 2>&1
 goto "WindowsDriveLetterExist"
+
+:"NotWindowsAssign"
+echo Windows not installed on volume %WindowsVolume%!
+goto "Volume"
 
 :"DriveLetterWindows"
 echo.
