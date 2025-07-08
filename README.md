@@ -1,4 +1,4 @@
-# CrowdStrike Falcon KB5042421/KB5042426 Fixer v3.0.2
+# CrowdStrike Falcon KB5042421/KB5042426 Fixer v3.0.5
 Fixes the CrowdStrike Falcon BSOD.
 
 ## Notes
