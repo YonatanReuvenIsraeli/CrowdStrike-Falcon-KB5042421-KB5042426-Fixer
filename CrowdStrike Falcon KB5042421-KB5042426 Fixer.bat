@@ -2,7 +2,7 @@
 title CrowdStrike Falcon KB5042421/KB5042426 Fixer
 setlocal
 echo Program Name: CrowdStrike Falcon KB5042421/KB5042426 Fixer
-echo Version: 3.0.3
+echo Version: 3.0.4
 echo License: GNU General Public License v3.0
 echo Developer: @YonatanReuvenIsraeli
 echo GitHub: https://github.com/YonatanReuvenIsraeli
@@ -183,7 +183,6 @@ echo Windows not installed on volume %WindowsVolume%! Removing drive letter "%Dr
 if not "%errorlevel%"=="0" goto "NotWindowsAssignError"
 del "diskpart.txt" /f /q > nul 2>&1
 echo Removed drive letter "%DriveLetterWindows%" from volume %WindowsVolume%. Please try again.
-set WindowsError=True
 goto "Volume"
 
 :"DiskPartExistNotWindowsAssign"
