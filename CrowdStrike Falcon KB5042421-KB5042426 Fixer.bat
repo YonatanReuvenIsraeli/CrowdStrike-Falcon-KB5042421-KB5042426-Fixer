@@ -2,7 +2,7 @@
 title CrowdStrike Falcon KB5042421/KB5042426 Fixer
 setlocal
 echo Program Name: CrowdStrike Falcon KB5042421/KB5042426 Fixer
-echo Version: 3.0.6
+echo Version: 3.0.7
 echo License: GNU General Public License v3.0
 echo Developer: @YonatanReuvenIsraeli
 echo GitHub: https://github.com/YonatanReuvenIsraeli
@@ -174,7 +174,7 @@ goto "WindowsDriveLetterExist"
 :"CheckExistWindowsAssign"
 if not exist "%DriveLetterWindows%\Windows" goto "NotWindowsAssign"
 if /i "%DiskPart%"=="True" goto "DiskPartDone"
-goto "Start"
+goto "CrowdStrikeCheck"
 
 :"NotWindowsAssign"
 if exist "diskpart.txt" goto "DiskPartExistNotWindowsAssign"
@@ -205,7 +205,7 @@ goto "NotWindowsAssign"
 echo.
 echo You can now rename or move back the file back to "diskpart.txt". Press any key to continue.
 pause > nul 2>&1
-goto "Start"
+goto "CrowdStrikeCheck"
 
 :"DriveLetterWindows"
 echo.
@@ -252,7 +252,7 @@ goto "SureDriveLetterWindows"
 :"CheckExistDriveLetterWindows"
 if not exist "%DriveLetterWindows%" goto "DriveLetterWindowsNotExist"
 if not exist "%DriveLetterWindows%\Windows" goto "NotWindows"
-goto "Start"
+goto "CrowdStrikeCheck"
 
 :"DriveLetterWindowsNotExist"
 echo "%DriveLetterWindows%" does not exist! Please try again.
@@ -262,7 +262,7 @@ goto "Volume"
 echo Windows not installed on "%DriveLetterWindows%"!
 goto "Volume"
 
-:"Start"
+:"CrowdStrikeCheck"
 echo.
 echo Checking CrowdStrike Falcon status.
 if exist "%DriveLetterWindows%\Windows\System32\drivers\CrowdStrike" goto "BugCheck"
