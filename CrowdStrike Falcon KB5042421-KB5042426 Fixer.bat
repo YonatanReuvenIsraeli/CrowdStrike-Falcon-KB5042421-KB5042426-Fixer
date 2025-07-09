@@ -2,7 +2,7 @@
 title CrowdStrike Falcon KB5042421/KB5042426 Fixer
 setlocal
 echo Program Name: CrowdStrike Falcon KB5042421/KB5042426 Fixer
-echo Version: 3.0.10
+echo Version: 3.0.11
 echo License: GNU General Public License v3.0
 echo Developer: @YonatanReuvenIsraeli
 echo GitHub: https://github.com/YonatanReuvenIsraeli
@@ -289,7 +289,7 @@ echo Fixing CrowdStrike Falcon.
 del "%DriveLetterWindows%\Windows\System32\Drivers\C-00000291*.sys" /f /q > nul 2>&1
 if not "%errorlevel%"=="0" goto "Error"
 endlocal
-echo CrowdStrike Falcon fixed! Please save everything you want before restarting this PC!  Press any key to restart this PC.
+echo CrowdStrike Falcon fixed! Please save everything you want before restarting this PC! Press any key to restart this PC.
 pause > nul 2>&1
 "%windir%\System32\wpeutil.exe" Reboot
 exit
