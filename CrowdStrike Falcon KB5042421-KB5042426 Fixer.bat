@@ -2,7 +2,7 @@
 title CrowdStrike Falcon KB5042421/KB5042426 Fixer
 setlocal
 echo Program Name: CrowdStrike Falcon KB5042421/KB5042426 Fixer
-echo Version: 3.0.12
+echo Version: 3.1.0
 echo License: GNU General Public License v3.0
 echo Developer: @YonatanReuvenIsraeli
 echo GitHub: https://github.com/YonatanReuvenIsraeli
@@ -266,38 +266,53 @@ goto "Volume"
 echo.
 echo Checking CrowdStrike Falcon status on Windows installation "%DriveLetterWindows%".
 if exist "%DriveLetterWindows%\Windows\System32\drivers\CrowdStrike" goto "BugCheck"
-echo CrowdStrike Falcon not installed on Windows installation "%DriveLetterWindows%"! Press any key to close this batch file.
-pause > nul 2>&1
-goto "Close"
+echo CrowdStrike Falcon not installed on Windows installation "%DriveLetterWindows%"!
+goto "Done"
 
 :"BugCheck"
 if exist "%DriveLetterWindows%\Windows\System32\drivers\CrowdStrike\C-00000291*.sys" goto "CrowdStrike"
-echo CrowdStrike Falcon installed on Windows installation "%DriveLetterWindows%" but no problems found! Press any key to close this batch file.
-pause > nul 2>&1
-goto "Close"
+echo CrowdStrike Falcon installed on Windows installation "%DriveLetterWindows%" but no problems found!
+goto "Done"
 
 :CrowdStrike
 echo CrowdStrike Falcon installed on Windows installation "%DriveLetterWindows%" and may have problems!
 set CrowdStrike=
 set /p CrowdStrike="Did this PC BSOD on boot? (Yes/No) "
 if /i "%CrowdStrike%"=="Yes" goto "Fix"
-if /i "%CrowdStrike%"=="No" goto "Close"
+if /i "%CrowdStrike%"=="No" goto "Done"
 
 :"Fix"
 echo.
 echo Fixing CrowdStrike Falcon.
 del "%DriveLetterWindows%\Windows\System32\Drivers\C-00000291*.sys" /f /q > nul 2>&1
 if not "%errorlevel%"=="0" goto "Error"
-endlocal
-echo CrowdStrike Falcon fixed! Please save everything you want before restarting this PC! Press any key to restart this PC.
-pause > nul 2>&1
-"%windir%\System32\wpeutil.exe" Reboot
-exit
+echo CrowdStrike Falcon fixed!
+goto "Done"
 
 :"Error"
 echo There has been an error! You can try again.
 goto "CrowdStrike"
 
-:"Close"
+:"Done"
+echo.
+echo [1] Exit.
+echo [2] Reboot.
+echo.
+set Input=
+set /p Input="What would you like to do? (1-2) "
+if /i "%Input%"=="1" goto "Exit"
+if /i "%Input%"=="2" goto "Reboot"
+echo Invalid syntax!
+goto "Done"
+
+:"Exit"
 endlocal
+exit
+
+:"Reboot"
+endlocal
+echo.
+echo Please save everything you want before restarting this PC! Press any key to restart this PC.
+pause > nul 2>&1
+"%windir%\System32\wpeutil.exe" Reboot
 exit
