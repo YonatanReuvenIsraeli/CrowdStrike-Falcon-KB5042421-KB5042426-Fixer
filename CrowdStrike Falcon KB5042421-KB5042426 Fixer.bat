@@ -2,7 +2,7 @@
 title CrowdStrike Falcon KB5042421/KB5042426 Fixer
 setlocal
 echo Program Name: CrowdStrike Falcon KB5042421/KB5042426 Fixer
-echo Version: 3.0.11
+echo Version: 3.0.12
 echo License: GNU General Public License v3.0
 echo Developer: @YonatanReuvenIsraeli
 echo GitHub: https://github.com/YonatanReuvenIsraeli
@@ -266,18 +266,18 @@ goto "Volume"
 echo.
 echo Checking CrowdStrike Falcon status on Windows installation "%DriveLetterWindows%".
 if exist "%DriveLetterWindows%\Windows\System32\drivers\CrowdStrike" goto "BugCheck"
-echo CrowdStrike Falcon not installed on  Windows installation "%DriveLetterWindows%"! Press any key to close this batch file.
+echo CrowdStrike Falcon not installed on Windows installation "%DriveLetterWindows%"! Press any key to close this batch file.
 pause > nul 2>&1
 goto "Close"
 
 :"BugCheck"
 if exist "%DriveLetterWindows%\Windows\System32\drivers\CrowdStrike\C-00000291*.sys" goto "CrowdStrike"
-echo CrowdStrike Falcon installed on  Windows installation "%DriveLetterWindows%" but no problems found! Press any key to close this batch file.
+echo CrowdStrike Falcon installed on Windows installation "%DriveLetterWindows%" but no problems found! Press any key to close this batch file.
 pause > nul 2>&1
 goto "Close"
 
 :CrowdStrike
-echo CrowdStrike Falcon installed on  Windows installation "%DriveLetterWindows%" and may have problems!
+echo CrowdStrike Falcon installed on Windows installation "%DriveLetterWindows%" and may have problems!
 set CrowdStrike=
 set /p CrowdStrike="Did this PC BSOD on boot? (Yes/No) "
 if /i "%CrowdStrike%"=="Yes" goto "Fix"
