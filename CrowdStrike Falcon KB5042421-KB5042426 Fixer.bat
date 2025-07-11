@@ -2,7 +2,7 @@
 title CrowdStrike Falcon KB5042421/KB5042426 Fixer
 setlocal
 echo Program Name: CrowdStrike Falcon KB5042421/KB5042426 Fixer
-echo Version: 3.1.1
+echo Version: 3.1.2
 echo License: GNU General Public License v3.0
 echo Developer: @YonatanReuvenIsraeli
 echo GitHub: https://github.com/YonatanReuvenIsraeli
@@ -15,7 +15,7 @@ goto "DiskPartSet"
 echo.
 echo You are not in Windows Preinstallation Environment or Windows Recovery Environment! You must run this batch file in Windows Preinstallation Environment or Windows Recovery Environment. Press any key to close this batch file.
 pause > nul 2>&1
-goto "Close"
+goto "Exit"
 
 :"DiskPartSet"
 set DiskPart=
