@@ -2,7 +2,7 @@
 title CrowdStrike Falcon KB5042421/KB5042426 Fixer
 setlocal
 echo Program Name: CrowdStrike Falcon KB5042421/KB5042426 Fixer
-echo Version: 3.1.2
+echo Version: 3.1.3
 echo License: GNU General Public License v3.0
 echo Developer: @YonatanReuvenIsraeli
 echo GitHub: https://github.com/YonatanReuvenIsraeli
@@ -203,7 +203,7 @@ goto "NotWindowsAssign"
 
 :"DiskPartDone"
 echo.
-echo You can now rename or move back the file back to "diskpart.txt". Press any key to continue.
+echo You can now rename or move the file back to "diskpart.txt". Press any key to continue.
 pause > nul 2>&1
 goto "CrowdStrikeCheck"
 
