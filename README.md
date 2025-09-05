@@ -2,4 +2,4 @@
 Fixes the CrowdStrike Falcon BSOD.
 
 ## Notes
-- This batch file may clear your AutoMount points.
+- This batch file may clear your auto-mount points.
