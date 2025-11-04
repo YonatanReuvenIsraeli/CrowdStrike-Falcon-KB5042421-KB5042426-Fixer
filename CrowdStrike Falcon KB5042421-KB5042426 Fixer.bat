@@ -2,7 +2,7 @@
 title CrowdStrike Falcon KB5042421/KB5042426 Fixer
 setlocal
 echo Program Name: CrowdStrike Falcon KB5042421/KB5042426 Fixer
-echo Version: 3.1.3
+echo Version: 3.1.4
 echo License: GNU General Public License v3.0
 echo Developer: @YonatanReuvenIsraeli
 echo GitHub: https://github.com/YonatanReuvenIsraeli
@@ -147,7 +147,7 @@ goto "AssignDriveLetterWindows"
 if exist "diskpart.txt" goto "DiskPartExistAssignDriveLetterWindows"
 echo.
 echo Assigning Windows volume %WindowsVolume% drive letter "%WindowsDriveLetter%".
-(echo automount scrub) >
+(echo automount scrub) > "diskpart.txt"
 (echo sel vol %WindowsVolume%) >> "diskpart.txt"
 (echo assign letter=%WindowsDriveLetter%) >> "diskpart.txt"
 (echo exit) >> "diskpart.txt"
