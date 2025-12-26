@@ -2,7 +2,7 @@
 title CrowdStrike Falcon KB5042421/KB5042426 Fixer
 setlocal
 echo Program Name: CrowdStrike Falcon KB5042421/KB5042426 Fixer
-echo Version: 3.1.4
+echo Version: 3.1.5
 echo License: GNU General Public License v3.0
 echo Developer: @YonatanReuvenIsraeli
 echo GitHub: https://github.com/YonatanReuvenIsraeli
@@ -27,7 +27,7 @@ echo.
 echo Listing volumes attached to this PC.
 (echo list vol) > "diskpart.txt"
 (echo exit) >> "diskpart.txt"
-"%windir%\System32\diskpart.exe" /s "diskpart.txt" 2>&1
+"%windir%\System32\diskpart.exe" /s "diskpart.txt"
 if not "%errorlevel%"=="0" goto "VolumeError"
 del "diskpart.txt" /f /q > nul 2>&1
 echo Volumes attached to this PC listed.
