@@ -2,7 +2,7 @@
 title CrowdStrike Falcon KB5042421/KB5042426 Fixer
 setlocal
 echo Program Name: CrowdStrike Falcon KB5042421/KB5042426 Fixer
-echo Version: 3.1.8
+echo Version: 3.1.9
 echo License: GNU General Public License v3.0
 echo Developer: @YonatanReuvenIsraeli
 echo GitHub: https://github.com/YonatanReuvenIsraeli
@@ -173,7 +173,6 @@ goto "WindowsDriveLetterExist"
 
 :"CheckExistWindowsAssign"
 if not exist "%DriveLetterWindows%\Windows" goto "NotWindowsAssign"
-if /i "%DriveLetterWindows%"=="%SystemDrive%" goto "IsOnlineAssign"
 if /i "%DiskPart%"=="True" goto "DiskPartDone"
 goto "CrowdStrikeCheck"
 
@@ -201,31 +200,6 @@ del "diskpart.txt" /f /q > nul 2>&1
 echo There has been an error! Press any key to try again.
 pause > nul 2>&1
 goto "NotWindowsAssign"
-
-:"IsOnlineAssign"
-if exist "diskpart.txt" goto "DiskPartExistIsOnlineAssign"
-echo.
-echo "%DriveLetterWindows%" is an online Windows installation! Removing drive letter "%DriveLetterWindows%" from volume %WindowsVolume%.
-(echo sel vol %WindowsVolume%) > "diskpart.txt"
-(echo remove letter=%DriveLetterWindows%) >> "diskpart.txt"
-(echo exit) >> "diskpart.txt"
-"%windir%\System32\diskpart.exe" /s "diskpart.txt" > nul 2>&1
-if not "%errorlevel%"=="0" goto "IsOnlineAssignError"
-del "diskpart.txt" /f /q > nul 2>&1
-echo Removed drive letter "%DriveLetterWindows%" from volume %WindowsVolume%. Please try again.
-goto "Volume"
-
-:"DiskPartExistIsOnlineAssign"
-set DiskPart=True
-echo Please temporarily rename to something else or temporarily move to another location "diskpart.txt" in order for this batch file to proceed. "diskpart.txt" is not a system file. "diskpart.txt" is located in the folder "%cd%". Press any key to continue when "diskpart.txt" is renamed to something else or moved to another location. This batch file will let you know when you can rename it back to its original name or move it back to its original location.
-pause > nul 2>&1
-goto "IsOnlineAssign"
-
-:"IsOnlineAssignError"
-del "diskpart.txt" /f /q > nul 2>&1
-echo There has been an error! Press any key to try again.
-pause > nul 2>&1
-goto "IsOnlineAssign"
 
 :"DiskPartDone"
 echo.
