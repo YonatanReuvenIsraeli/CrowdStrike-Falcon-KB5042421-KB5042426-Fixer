@@ -2,7 +2,7 @@
 title CrowdStrike Falcon KB5042421/KB5042426 Fixer
 setlocal
 echo Program Name: CrowdStrike Falcon KB5042421/KB5042426 Fixer
-echo Version: 3.1.6
+echo Version: 3.1.7
 echo License: GNU General Public License v3.0
 echo Developer: @YonatanReuvenIsraeli
 echo GitHub: https://github.com/YonatanReuvenIsraeli
@@ -303,7 +303,7 @@ goto "Done"
 :CrowdStrike
 echo CrowdStrike Falcon installed on Windows installation "%DriveLetterWindows%" and may have problems!
 set CrowdStrike=
-set /p CrowdStrike="Did this PC BSOD on boot? (Yes/No) "
+set /p CrowdStrike="Did the PC your are fixing BSOD on boot? (Yes/No) "
 if /i "%CrowdStrike%"=="Yes" goto "Fix"
 if /i "%CrowdStrike%"=="No" goto "Done"
 
