@@ -2,7 +2,7 @@
 title CrowdStrike Falcon KB5042421/KB5042426 Fixer
 setlocal
 echo Program Name: CrowdStrike Falcon KB5042421/KB5042426 Fixer
-echo Version: 3.1.12
+echo Version: 3.1.13
 echo License: GNU General Public License v3.0
 echo Developer: @YonatanReuvenIsraeli
 echo GitHub: https://github.com/YonatanReuvenIsraeli
@@ -307,6 +307,12 @@ if /i "%PERE%"=="True" goto "PEREDone"
 echo There has been an error! You can try again.
 goto "CrowdStrike"
 
+:"Done"
+echo.
+echo Press any key to close this batch file.
+pause > nul 2>&1
+goto "Exit"
+
 :"PEREDone"
 echo.
 echo [1] Exit.
@@ -318,12 +324,6 @@ if /i "%Input%"=="1" goto "Exit"
 if /i "%Input%"=="2" goto "Reboot"
 echo Invalid syntax!
 goto "PEREDone"
-
-:"Done"
-echo.
-echo Press any key to close this batch file.
-pause > nul 2>&1
-goto "Exit"
 
 :"Exit"
 endlocal
