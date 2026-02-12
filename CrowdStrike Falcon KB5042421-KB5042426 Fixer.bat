@@ -2,14 +2,14 @@
 title CrowdStrike Falcon KB5042421/KB5042426 Fixer
 setlocal
 echo Program Name: CrowdStrike Falcon KB5042421/KB5042426 Fixer
-echo Version: 3.1.10
+echo Version: 3.1.11
 echo License: GNU General Public License v3.0
 echo Developer: @YonatanReuvenIsraeli
 echo GitHub: https://github.com/YonatanReuvenIsraeli
 echo Sponsor: https://github.com/sponsors/YonatanReuvenIsraeli
 "%windir%\System32\net.exe" session > nul 2>&1
-set PERE=
 if not "%errorlevel%"=="0" goto "NotAdministrator"
+set PERE=
 "%windir%\System32\net.exe" user > nul 2>&1
 if not "%errorlevel%"=="0" set PERE=True
 goto "DiskPartSet"
