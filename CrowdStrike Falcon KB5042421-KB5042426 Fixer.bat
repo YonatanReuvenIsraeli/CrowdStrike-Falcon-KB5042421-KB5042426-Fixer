@@ -2,13 +2,16 @@
 title CrowdStrike Falcon KB5042421/KB5042426 Fixer
 setlocal
 echo Program Name: CrowdStrike Falcon KB5042421/KB5042426 Fixer
-echo Version: 3.1.9
+echo Version: 3.1.10
 echo License: GNU General Public License v3.0
 echo Developer: @YonatanReuvenIsraeli
 echo GitHub: https://github.com/YonatanReuvenIsraeli
 echo Sponsor: https://github.com/sponsors/YonatanReuvenIsraeli
 "%windir%\System32\net.exe" session > nul 2>&1
+set PERE=
 if not "%errorlevel%"=="0" goto "NotAdministrator"
+"%windir%\System32\net.exe" user > nul 2>&1
+if not "%errorlevel%"=="0" set PERE=True
 goto "DiskPartSet"
 
 :"NotAdministrator"
@@ -272,19 +275,24 @@ echo.
 echo Checking CrowdStrike Falcon status on Windows installation "%DriveLetterWindows%".
 if exist "%DriveLetterWindows%\Windows\System32\drivers\CrowdStrike" goto "BugCheck"
 echo CrowdStrike Falcon not installed on Windows installation "%DriveLetterWindows%"!
+if /i "%PERE%"=="True" goto "PEREDone"
 goto "Done"
 
 :"BugCheck"
+if exist "%DriveLetterWindows%\Windows\System32\drivers\CrowdStrike\C-00000291*.sys" echo CrowdStrike Falcon installed on Windows installation "%DriveLetterWindows%" and may have problems!
 if exist "%DriveLetterWindows%\Windows\System32\drivers\CrowdStrike\C-00000291*.sys" goto "CrowdStrike"
 echo CrowdStrike Falcon installed on Windows installation "%DriveLetterWindows%" but no problems found!
+if /i "%PERE%"=="True" goto "PEREDone"
 goto "Done"
 
-:CrowdStrike
-echo CrowdStrike Falcon installed on Windows installation "%DriveLetterWindows%" and may have problems!
+:"CrowdStrike"
 set CrowdStrike=
 set /p CrowdStrike="Did the PC your are fixing BSOD on boot? (Yes/No) "
 if /i "%CrowdStrike%"=="Yes" goto "Fix"
+if /i "%PERE%"=="True" if /i "%CrowdStrike%"=="No" goto "PEREDone"
 if /i "%CrowdStrike%"=="No" goto "Done"
+echo Invalid syntax!
+goto "CrowdStrike"
 
 :"Fix"
 echo.
@@ -292,13 +300,14 @@ echo Fixing CrowdStrike Falcon.
 del "%DriveLetterWindows%\Windows\System32\Drivers\C-00000291*.sys" /f /q > nul 2>&1
 if not "%errorlevel%"=="0" goto "Error"
 echo CrowdStrike Falcon fixed!
+if /i "%PERE%"=="True" goto "PEREDone"
 goto "Done"
 
 :"Error"
 echo There has been an error! You can try again.
 goto "CrowdStrike"
 
-:"Done"
+:"PEREDone"
 echo.
 echo [1] Exit.
 echo [2] Reboot.
@@ -308,7 +317,13 @@ set /p Input="What would you like to do? (1-2) "
 if /i "%Input%"=="1" goto "Exit"
 if /i "%Input%"=="2" goto "Reboot"
 echo Invalid syntax!
-goto "Done"
+goto "PEREDone"
+
+:"Done"
+echo.
+echo Press any key to close this batch file.
+pause > nul 2>&1
+goto "Exit"
 
 :"Exit"
 endlocal
